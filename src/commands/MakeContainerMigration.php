@@ -2,89 +2,40 @@
 
 namespace Voice\Containers\Commands;
 
-use Illuminate\Console\GeneratorCommand;
+use Illuminate\Database\Console\Migrations\MigrateMakeCommand;
+use Illuminate\Database\Console\Migrations\TableGuesser;
 use Illuminate\Support\Str;
 
-class MakeContainerMigration extends GeneratorCommand
+class MakeContainerMigration extends MigrateMakeCommand
 {
     /**
-     * The console command name.
+     * The console command signature.
      *
      * @var string
      */
-    protected $name = 'asseco-voice:make-container';
+    protected $signature = 'asseco-voice:containers
+        {--path= : The location where the migration files should be created}
+        {--realpath : Indicate any provided migration file paths are pre-resolved absolute paths}
+        {--fullpath : Output the full path of the migrations}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = '...';
+    protected $description = 'Creating container migrations for models having Containable trait';
 
-    /**
-     * The type of class being generated.
-     *
-     * @var string
-     */
-    protected $type = 'Model';
-
-    /**
-     * Get the stub file for the generator.
-     *
-     * @return string
-     */
-    protected function getStub()
-    {
-        $stub = '/stubs/container-migration.create.stub';
-
-        return $this->resolveStubPath($stub);
-    }
-
-    /**
-     * Resolve the fully-qualified path to the stub.
-     *
-     * @param string $stub
-     * @return string
-     */
-    protected function resolveStubPath($stub)
-    {
-        return file_exists($customPath = $this->laravel->basePath(trim($stub, '/')))
-            ? $customPath
-            : __DIR__ . $stub;
-    }
-
-    /**
-     * Execute the console command.
-     *
-     * @return void
-     */
     public function handle()
     {
+        // TODO: stock migration should run (create containers table)
+
         $models = $this->getModelsWithContainableTrait();
 
         foreach ($models as $model) {
-            $this->createMigration($model . "Container");
-        }
-    }
-
-    /**
-     * Create a migration file for the model.
-     *
-     * @param $name
-     * @return void
-     */
-    protected function createMigration($name)
-    {
-        $table = Str::snake(Str::pluralStudly(class_basename($name)));
-
-        if ($this->option('pivot')) {
-            $table = Str::singular($table);
+            $this->createMigration($model);
         }
 
-        $this->call('make:migration', [
-            'name' => "create_{$table}_table",
-            '--create' => $table,
-        ]);
+        $this->composer->dumpAutoloads();
     }
 
     protected function getModelsWithContainableTrait()
@@ -116,5 +67,27 @@ class MakeContainerMigration extends GeneratorCommand
         $containable = "Voice\Containers\Traits\Containable";  // TODO: config
 
         return in_array($containable, $traits);
+    }
+
+    public function createMigration($model)
+    {
+        $modelSnakeCase = Str::snake(class_basename($model));
+        $name = "create_container_{$modelSnakeCase}_table";
+
+        [$table, $create] = TableGuesser::guess($name);
+        $this->writeMigrationOverloaded($name, $table, $create, $model);
+    }
+
+    protected function writeMigrationOverloaded($name, $table, $create, $model)
+    {
+        $file = $this->creator->createOverloaded(
+            $name, $this->getMigrationPath(), $model, $table, $create
+        );
+
+        if (!$this->option('fullpath')) {
+            $file = pathinfo($file, PATHINFO_FILENAME);
+        }
+
+        $this->line("<info>Created Migration:</info> {$file}");
     }
 }
