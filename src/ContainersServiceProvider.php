@@ -12,7 +12,9 @@ class ContainersServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
+        $this->publishes([
+            __DIR__ . '/config/asseco-voice.php' => config_path('asseco-voice.php'),
+        ]);
     }
 
     /**
@@ -20,6 +22,10 @@ class ContainersServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom(
+            __DIR__ . '/config/asseco-voice.php', 'asseco-voice'
+        );
+
         $this->registerCreator();
         $this->registerMigrateMakeCommand();
 
