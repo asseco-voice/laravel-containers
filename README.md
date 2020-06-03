@@ -3,6 +3,15 @@
 Purpose of this repository is to provide container support to 
 any Laravel model. 
 
+**Container** is an entity representing a logical container
+for a collection of other entities which require ACL to be 
+enforced on.
+
+## Installation
+
+Require the package with ``composer require asseco-voice/containers``.
+Service provider for Laravel will be installed automatically.
+
 ## Usage
 
 In order to use this repository the following must be done:
