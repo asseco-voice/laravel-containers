@@ -3,7 +3,7 @@
 namespace Voice\Containers;
 
 use Illuminate\Support\ServiceProvider;
-use Voice\Containers\Commands\MakeContainerMigration;
+use Voice\Containers\Commands\MakeContainers;
 
 class ContainersServiceProvider extends ServiceProvider
 {
@@ -22,14 +22,16 @@ class ContainersServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(
-            __DIR__ . '/config/asseco-voice.php', 'asseco-voice'
-        );
-
-        $this->registerCreator();
-        $this->registerMigrateMakeCommand();
-
         if ($this->app->runningInConsole()) {
+            $this->mergeConfigFrom(
+                __DIR__ . '/config/asseco-voice.php', 'asseco-voice'
+            );
+
+            $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
+
+            $this->registerCreator();
+            $this->registerMigrateMakeCommand();
+
             $this->commands([
                 'asseco-voice.command.migrate.make',
             ]);
@@ -59,7 +61,7 @@ class ContainersServiceProvider extends ServiceProvider
             $creator = $app['asseco-voice.migration.creator'];
             $composer = $app['composer'];
 
-            return new MakeContainerMigration($creator, $composer);
+            return new MakeContainers($creator, $composer);
         });
     }
 }

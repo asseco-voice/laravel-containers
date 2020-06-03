@@ -5,8 +5,9 @@ namespace Voice\Containers\Commands;
 use Illuminate\Database\Console\Migrations\MigrateMakeCommand;
 use Illuminate\Database\Console\Migrations\TableGuesser;
 use Illuminate\Support\Str;
+use InvalidArgumentException;
 
-class MakeContainerMigration extends MigrateMakeCommand
+class MakeContainers extends MigrateMakeCommand
 {
     /**
      * The console command signature.
@@ -27,8 +28,6 @@ class MakeContainerMigration extends MigrateMakeCommand
 
     public function handle()
     {
-        // TODO: stock migration should run (create containers table)
-
         $models = $this->getModelsWithContainableTrait();
 
         foreach ($models as $model) {
@@ -69,13 +68,23 @@ class MakeContainerMigration extends MigrateMakeCommand
         return in_array($containable, $traits);
     }
 
-    public function createMigration($model)
+    protected function createMigration($model)
     {
         $modelSnakeCase = Str::snake(class_basename($model));
-        $name = "create_container_{$modelSnakeCase}_table";
+
+        $models = ['container', $modelSnakeCase];
+        sort($models);
+
+        $name = "create_{$models[0]}_{$models[1]}_table";
 
         [$table, $create] = TableGuesser::guess($name);
-        $this->writeMigrationOverloaded($name, $table, $create, $model);
+
+        try {
+            $this->writeMigrationOverloaded($name, $table, $create, $model);
+        } catch (InvalidArgumentException $e) {
+            $this->line("Migration {$name} already exists. Skipping...");
+            return;
+        }
     }
 
     protected function writeMigrationOverloaded($name, $table, $create, $model)
