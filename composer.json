@@ -1,12 +1,14 @@
 {
     "name": "asseco-voice/laravel-containers",
+    "license": "MIT",
     "require": {
         "php": "^7.4",
         "illuminate/support": "^7.11",
         "illuminate/contracts": "^7.5",
         "illuminate/database": "^7.13",
         "illuminate/console": "^7.13",
-        "illuminate/filesystem": "^7.13"
+        "illuminate/filesystem": "^7.13",
+        "illuminate/http": "^7.14"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.5",

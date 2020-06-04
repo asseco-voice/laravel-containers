@@ -9,7 +9,8 @@ enforced on.
 
 ## Installation
 
-Require the package with ``composer require asseco-voice/containers``.
+Require the package with 
+``composer require asseco-voice/laravel-containers``.
 Service provider for Laravel will be installed automatically.
 
 ## Usage

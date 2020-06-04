@@ -1,6 +1,6 @@
 <?php
 
-namespace Voice\Containers\Commands;
+namespace Voice\Containers\App\Console\Commands;
 
 use Illuminate\Database\Console\Migrations\MigrateMakeCommand;
 use Illuminate\Database\Console\Migrations\TableGuesser;

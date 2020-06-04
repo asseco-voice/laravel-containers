@@ -1,6 +1,6 @@
 <?php
 
-namespace Voice\Containers;
+namespace Voice\Containers\App;
 
 use Illuminate\Database\Eloquent\Model;
 

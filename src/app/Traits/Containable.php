@@ -1,8 +1,8 @@
 <?php
 
-namespace Voice\Containers\Traits;
+namespace Voice\Containers\App\Traits;
 
-use Voice\Containers\Container;
+use Voice\Containers\App\Container;
 
 trait Containable
 {
