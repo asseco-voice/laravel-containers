@@ -22,7 +22,7 @@ class ContainerServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/config/asseco-voice.php', 'asseco-voice');
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
-        $this->loadRoutesFrom(__DIR__ . '/routes');
+        $this->loadRoutesFrom(__DIR__ . '/routes/api.php');
 
         $this->registerCreator();
         $this->registerMigrateMakeCommand();
