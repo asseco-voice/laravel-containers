@@ -32,3 +32,25 @@ standard for pivot tables.
 
 ``Containable`` trait exposes `containers` relationship so it doesn't
 have to be explicitly set on a model.
+
+## Configuration
+
+The stock configuration looks like this and most probably should never
+be changed, but if you ever need to override it:
+
+```
+'containers' => [
+    /**
+     * Path to Laravel models. This does not recurse in folders
+     */
+    'models_path'     => app_path(),
+    /**
+     * Namespace for Laravel models.
+     */
+    'model_namespace' => 'App\\',
+    /**
+     * Namespace to Containable trait
+     */
+    'trait_path'      => 'Voice\Containers\Traits\Containable',
+],
+```
