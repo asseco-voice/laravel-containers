@@ -1,5 +1,5 @@
 {
-    "name": "asseco-voice/containers",
+    "name": "asseco-voice/laravel-containers",
     "require": {
         "php": "^7.4",
         "illuminate/support": "^7.11",
@@ -20,7 +20,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Voice\\Containers\\ContainersServiceProvider"
+                "Voice\\Containers\\ContainerServiceProvider"
             ]
         }
     }

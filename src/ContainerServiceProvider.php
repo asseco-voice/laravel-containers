@@ -5,7 +5,7 @@ namespace Voice\Containers;
 use Illuminate\Support\ServiceProvider;
 use Voice\Containers\Commands\MakeContainers;
 
-class ContainersServiceProvider extends ServiceProvider
+class ContainerServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
