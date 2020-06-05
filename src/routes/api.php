@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Voice\Containers\App\Http\Controllers\ContainerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiResource('containers', 'ContainerController');
+Route::apiResource('containers', ContainerController::class);
