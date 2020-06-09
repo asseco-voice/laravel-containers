@@ -52,11 +52,9 @@ class CustomMigrationCreator extends MigrationCreator
     protected function populateStubOverloaded($name, $stub, $table, $model)
     {
         $snakeCaseModel = Str::snake(class_basename($model));
-        $foreignTable = Str::pluralStudly($snakeCaseModel);
         $foreignId = "{$snakeCaseModel}_id";
 
         $stub = str_replace('{{ foreignId }}', $foreignId, $stub);
-        $stub = str_replace('{{ foreignTable }}', $foreignTable, $stub);
 
         $stub = str_replace(
             ['DummyClass', '{{ class }}', '{{class}}'],
