@@ -14,4 +14,4 @@ use Voice\Containers\App\Http\Controllers\ContainerController;
 |
 */
 
-Route::apiResource('containers', ContainerController::class);
+Route::apiResource('api/containers', ContainerController::class);
