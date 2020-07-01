@@ -13,6 +13,6 @@ return [
         /**
          * Namespace to Containable trait
          */
-        'trait_path'      => 'Voice\Containers\Traits\Containable',
+        'trait_path'      => 'Voice\Containers\App\Traits\Containable',
     ]
 ];
