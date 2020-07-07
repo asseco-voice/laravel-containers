@@ -3,6 +3,8 @@
 namespace Voice\Containers\App\Http\Controllers;
 
 use App\Http\Controllers\Controller; // Stock Laravel controller class
+use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Voice\Containers\App\Container;
 
@@ -11,7 +13,7 @@ class ContainerController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\\Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function index()
     {
@@ -21,8 +23,8 @@ class ContainerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\\Illuminate\Http\Request $request
-     * @return \Illuminate\Http\\Illuminate\Http\Response
+     * @param Request $request
+     * @return JsonResponse
      */
     public function store(Request $request)
     {
@@ -34,8 +36,8 @@ class ContainerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Container $container
-     * @return \Illuminate\Http\\Illuminate\Http\Response
+     * @param Container $container
+     * @return JsonResponse
      */
     public function show(Container $container)
     {
@@ -45,9 +47,9 @@ class ContainerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\\Illuminate\Http\Request $request
-     * @param \App\Container $container
-     * @return \Illuminate\Http\\Illuminate\Http\Response
+     * @param Request $request
+     * @param Container $container
+     * @return JsonResponse
      */
     public function update(Request $request, Container $container)
     {
@@ -59,8 +61,9 @@ class ContainerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Container $container
-     * @return \Illuminate\Http\\Illuminate\Http\Response
+     * @param Container $container
+     * @return JsonResponse
+     * @throws Exception
      */
     public function destroy(Container $container)
     {

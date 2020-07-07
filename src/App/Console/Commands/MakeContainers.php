@@ -70,33 +70,16 @@ class MakeContainers extends MigrateMakeCommand
 
     protected function createMigration($model)
     {
-        $modelSnakeCase = Str::snake(class_basename($model));
+        $modelSnakeCase = Str::snake(Str::plural(class_basename($model)));
 
-        $models = ['container', $modelSnakeCase];
-        sort($models);
-
-        $name = "create_{$models[0]}_{$models[1]}_table";
+        $name = "add_container_id_to_{$modelSnakeCase}_table";
 
         [$table, $create] = TableGuesser::guess($name);
 
         try {
-            $this->writeMigrationOverloaded($name, $table, $create, $model);
+            $this->writeMigration($name, $table, $create);
         } catch (InvalidArgumentException $e) {
             $this->line("Migration {$name} already exists. Skipping...");
-            return;
         }
-    }
-
-    protected function writeMigrationOverloaded($name, $table, $create, $model)
-    {
-        $file = $this->creator->createOverloaded(
-            $name, $this->getMigrationPath(), $model, $table, $create
-        );
-
-        if (!$this->option('fullpath')) {
-            $file = pathinfo($file, PATHINFO_FILENAME);
-        }
-
-        $this->line("<info>Created Migration:</info> {$file}");
     }
 }

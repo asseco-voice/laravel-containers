@@ -2,6 +2,7 @@
 
 namespace Voice\Containers;
 
+use Illuminate\Database\Migrations\MigrationCreator;
 use Illuminate\Support\ServiceProvider;
 use Voice\Containers\App\Console\Commands\MakeContainers;
 
@@ -40,7 +41,7 @@ class ContainerServiceProvider extends ServiceProvider
     protected function registerCreator()
     {
         $this->app->singleton('asseco-voice.migration.creator', function ($app) {
-            return new CustomMigrationCreator($app['files'], __DIR__ . '/stubs');
+            return new MigrationCreator($app['files'], __DIR__ . '/stubs');
         });
     }
 

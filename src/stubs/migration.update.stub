@@ -13,9 +13,8 @@ class {{ class }} extends Migration
      */
     public function up()
     {
-        Schema::create('{{ table }}', function (Blueprint $table) {
-            $table->foreignId('container_id')->constrained()->onDelete('cascade');
-            $table->foreignId('{{ foreignId }}')->constrained()->onDelete('cascade');
+        Schema::table('{{ table }}', function (Blueprint $table) {
+            $table->foreignId('container_id')->default(1)->constrained()->onDelete('cascade');
         });
     }
 
@@ -26,6 +25,8 @@ class {{ class }} extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('{{ table }}');
+        Schema::table('{{ table }}', function (Blueprint $table) {
+            $table->dropColumn('container_id');
+        });
     }
 }
