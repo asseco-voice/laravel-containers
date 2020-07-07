@@ -2,7 +2,7 @@
 
 namespace Voice\Containers\App\Http\Controllers;
 
-use App\Http\Controllers\Controller; // Stock Laravel controller class
+use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -70,5 +70,16 @@ class ContainerController extends Controller
         $isDeleted = $container->delete();
 
         return response()->json($isDeleted);
+    }
+
+    /**
+     * Search the resource using search API engine
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function search(Request $request)
+    {
+        return response()->json(Container::search($request));
     }
 }
