@@ -14,5 +14,6 @@ use Voice\Containers\App\Http\Controllers\ContainerController;
 |
 */
 
-Route::get('api/containers/search', ContainerController::class . '@search');
+Route::get('api/containers/search', ContainerController::class . '@search')->name('containers.search');
+
 Route::apiResource('api/containers', ContainerController::class);
