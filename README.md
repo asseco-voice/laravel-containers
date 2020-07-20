@@ -1,10 +1,42 @@
 # Containers
 
-Purpose of this repository is to provide container support to 
-any Laravel model. 
+Purpose of this repository is to provide container support to any Laravel model. 
 
-**Container** is an entity for organizing multiple resources
-under a single logical unit. 
+**Container** is an entity for organizing multiple resources under a single logical unit. 
+
+## Example
+
+Having a ``contacts`` table:
+
+```
+ID  First name
+1   Foo 
+2   Bar
+3   Baz
+4   Boo
+5   Far
+6   Faz
+```
+
+You can logically organize it in 2 containers:
+
+```
+ID  Name
+1   F named
+2   B named
+```
+
+Resulting in an organized ``contacts`` table
+
+```
+ID  First name  Container ID
+1   Foo         1   
+2   Bar         2
+3   Baz         2
+4   Boo         2
+5   Far         1
+6   Faz         1
+```
 
 ## Installation
 
