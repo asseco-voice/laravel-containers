@@ -80,6 +80,6 @@ class ContainerController extends Controller
      */
     public function search(Request $request)
     {
-        return response()->json(Container::search($request->all()));
+        return response()->json(Container::search($request->all())->get());
     }
 }
