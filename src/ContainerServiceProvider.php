@@ -9,21 +9,21 @@ use Voice\Containers\App\Console\Commands\MakeContainers;
 class ContainerServiceProvider extends ServiceProvider
 {
     /**
-     * Bootstrap the application services.
-     */
-    public function boot()
-    {
-        $this->publishes([__DIR__ . '/config/asseco-voice.php' => config_path('asseco-voice.php'),]);
-    }
-
-    /**
      * Register the application services.
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/config/asseco-voice.php', 'asseco-voice');
+        $this->mergeConfigFrom(__DIR__ . '/config/asseco-containers.php', 'asseco-containers');
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
         $this->loadRoutesFrom(__DIR__ . '/routes/api.php');
+    }
+
+    /**
+     * Bootstrap the application services.
+     */
+    public function boot()
+    {
+        $this->publishes([__DIR__ . '/config/asseco-containers.php' => config_path('asseco-containers.php'),]);
 
         $this->registerCreator();
         $this->registerMigrateMakeCommand();
