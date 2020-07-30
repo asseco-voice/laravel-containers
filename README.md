@@ -65,27 +65,5 @@ have to be explicitly set on a model.
 
 This package also exposes ``/api/containers`` endpoints for standard
 Laravel CRUD actions.
-Also, a ``/api/containers/search`` endpoint is exposed, 
+Also, an ``/api/containers/search`` endpoint is exposed, 
 which can be used like [this](https://github.com/asseco-voice/laravel-json-query-builder).
-
-## Configuration
-
-The stock configuration looks like this, and most probably should never
-be changed, but if you ever need to override it:
-
-```
-'containers' => [
-    /**
-     * Path to Laravel models. This does not recurse in folders
-     */
-    'models_path'     => app_path(),
-    /**
-     * Namespace for Laravel models.
-     */
-    'model_namespace' => 'App\\',
-    /**
-     * Namespace to Containable trait
-     */
-    'trait_path'      => 'Voice\Containers\Traits\Containable',
-],
-```
