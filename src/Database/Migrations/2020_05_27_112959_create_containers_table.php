@@ -21,15 +21,6 @@ class CreateContainersTable extends Migration
             $table->string('name');
             $table->string('owner_id')->nullable();
         });
-
-        // This should be a seeder class, but Laravel PSR-4 auto loading...
-        Container::updateOrCreate(
-            ['name' => 'Default'],
-            [
-                'name'       => 'Default',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ]);
     }
 
     /**

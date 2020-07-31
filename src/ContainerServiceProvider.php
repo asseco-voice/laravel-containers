@@ -2,8 +2,12 @@
 
 namespace Voice\Containers;
 
+use Illuminate\Console\Events\CommandFinished;
 use Illuminate\Database\Migrations\MigrationCreator;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
+use Symfony\Component\Console\Output\ConsoleOutput;
 use Voice\Containers\App\Console\Commands\MakeContainers;
 
 class ContainerServiceProvider extends ServiceProvider
@@ -27,6 +31,7 @@ class ContainerServiceProvider extends ServiceProvider
 
         $this->registerCreator();
         $this->registerMigrateMakeCommand();
+        $this->registerSeedsFrom(__DIR__ . '/database/seeds');
 
         $this->commands([
             'asseco-voice.command.migrate.make',
@@ -58,5 +63,47 @@ class ContainerServiceProvider extends ServiceProvider
 
             return new MakeContainers($creator, $composer);
         });
+    }
+
+    protected function registerSeedsFrom($path)
+    {
+        if ($this->app->runningInConsole()) {
+            if ($this->seedCommandRunning()) {
+                $this->addSeedsAfterConsoleCommandFinished($path);
+            }
+        }
+    }
+
+    protected function seedCommandRunning(): bool
+    {
+        $args = request()->server('argv', null);
+        if (is_array($args)) {
+            $command = implode(' ', $args);
+            if ($command === 'artisan db:seed') {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    protected function addSeedsAfterConsoleCommandFinished(string $path)
+    {
+        Event::listen(CommandFinished::class, function (CommandFinished $event) use ($path) {
+            if ($event->output instanceof ConsoleOutput) {
+                $this->addSeedsFrom($path);
+            }
+        });
+    }
+
+    protected function addSeedsFrom($seeds_path)
+    {
+        $file_names = glob("$seeds_path/*.php");
+        foreach ($file_names as $filename) {
+            include $filename;
+            $classes = get_declared_classes();
+            $class = end($classes);
+
+            Artisan::call('db:seed', ['--class' => $class]);
+        }
     }
 }
