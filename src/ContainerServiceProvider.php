@@ -3,8 +3,8 @@
 namespace Voice\Containers;
 
 use Illuminate\Database\Migrations\MigrationCreator;
+use Illuminate\Support\ServiceProvider;
 use Voice\Containers\App\Console\Commands\MakeContainers;
-use Voice\ServiceProviderSeeders\ServiceProvider;
 
 class ContainerServiceProvider extends ServiceProvider
 {
@@ -27,7 +27,6 @@ class ContainerServiceProvider extends ServiceProvider
 
         $this->registerCreator();
         $this->registerMigrateMakeCommand();
-        $this->loadSeedsFrom(__DIR__ . '/database/seeds');
 
         $this->commands([
             'asseco-voice.command.migrate.make',
