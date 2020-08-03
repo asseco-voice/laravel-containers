@@ -13,9 +13,9 @@ class ContainerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/config/asseco-containers.php', 'asseco-containers');
-        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
-        $this->loadRoutesFrom(__DIR__ . '/routes/api.php');
+        $this->mergeConfigFrom(__DIR__ . '/Config/asseco-containers.php', 'asseco-containers');
+        $this->loadMigrationsFrom(__DIR__ . '/Database/migrations');
+        $this->loadRoutesFrom(__DIR__ . '/Routes/api.php');
     }
 
     /**
@@ -23,7 +23,7 @@ class ContainerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->publishes([__DIR__ . '/config/asseco-containers.php' => config_path('asseco-containers.php'),]);
+        $this->publishes([__DIR__ . '/Config/asseco-containers.php' => config_path('asseco-containers.php'),]);
 
         $this->registerCreator();
         $this->registerMigrateMakeCommand();
@@ -41,7 +41,7 @@ class ContainerServiceProvider extends ServiceProvider
     protected function registerCreator()
     {
         $this->app->singleton('asseco-voice.migration.creator', function ($app) {
-            return new MigrationCreator($app['files'], __DIR__ . '/stubs');
+            return new MigrationCreator($app['files'], __DIR__ . '/Stubs');
         });
     }
 

@@ -39,8 +39,8 @@ class MakeContainers extends MigrateMakeCommand
 
     protected function getModelsWithContainableTrait()
     {
-        $path = config('asseco-voice.containers.models_path');
-        $namespace = config('asseco-voice.containers.model_namespace');
+        $path = config('asseco-containers.models_path');
+        $namespace = config('asseco-containers.model_namespace');
         $models = [];
         $results = scandir($path);
 
@@ -63,7 +63,7 @@ class MakeContainers extends MigrateMakeCommand
     protected function hasContainableTrait($class)
     {
         $traits = class_uses($class);
-        $containable = config('asseco-voice.containers.trait_path');
+        $containable = config('asseco-containers.trait_path');
 
         return in_array($containable, $traits);
     }
