@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Voice\Containers\App\Console\Commands;
 
 use Illuminate\Database\Console\Migrations\MigrateMakeCommand;
@@ -26,7 +28,7 @@ class MakeContainers extends MigrateMakeCommand
      */
     protected $description = 'Creating container migrations for models having Containable trait';
 
-    public function handle()
+    public function handle(): void
     {
         $models = $this->getModelsWithContainableTrait();
 
@@ -37,7 +39,7 @@ class MakeContainers extends MigrateMakeCommand
         $this->composer->dumpAutoloads();
     }
 
-    protected function getModelsWithContainableTrait()
+    protected function getModelsWithContainableTrait(): array
     {
         $path = config('asseco-containers.models_path');
         $namespace = config('asseco-containers.model_namespace');
@@ -60,7 +62,7 @@ class MakeContainers extends MigrateMakeCommand
         return $models;
     }
 
-    protected function hasContainableTrait($class)
+    protected function hasContainableTrait($class): bool
     {
         $traits = class_uses($class);
         $containable = config('asseco-containers.trait_path');
@@ -68,7 +70,7 @@ class MakeContainers extends MigrateMakeCommand
         return in_array($containable, $traits);
     }
 
-    protected function createMigration($model)
+    protected function createMigration($model): void
     {
         $modelSnakeCase = Str::snake(Str::plural(class_basename($model)));
 

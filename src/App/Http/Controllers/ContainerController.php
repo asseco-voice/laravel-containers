@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Voice\Containers\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Voice\Containers\App\Container;
 
 class ContainerController extends Controller
@@ -15,9 +18,9 @@ class ContainerController extends Controller
      *
      * @return JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        return response()->json(Container::all());
+        return Response::json(Container::all());
     }
 
     /**
@@ -26,11 +29,11 @@ class ContainerController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
-        $container = Container::create($request->all());
+        $container = Container::query()->create($request->all());
 
-        return response()->json($container);
+        return Response::json($container);
     }
 
     /**
@@ -39,9 +42,9 @@ class ContainerController extends Controller
      * @param Container $container
      * @return JsonResponse
      */
-    public function show(Container $container)
+    public function show(Container $container): JsonResponse
     {
-        return response()->json($container);
+        return Response::json($container);
     }
 
     /**
@@ -51,11 +54,11 @@ class ContainerController extends Controller
      * @param Container $container
      * @return JsonResponse
      */
-    public function update(Request $request, Container $container)
+    public function update(Request $request, Container $container): JsonResponse
     {
         $isUpdated = $container->update($request->all());
 
-        return response()->json($isUpdated);
+        return Response::json($isUpdated ? 'true' : 'false');
     }
 
     /**
@@ -65,21 +68,10 @@ class ContainerController extends Controller
      * @return JsonResponse
      * @throws Exception
      */
-    public function destroy(Container $container)
+    public function destroy(Container $container): JsonResponse
     {
         $isDeleted = $container->delete();
 
-        return response()->json($isDeleted);
-    }
-
-    /**
-     * Search the resource using search API engine
-     *
-     * @param Request $request
-     * @return JsonResponse
-     */
-    public function search(Request $request)
-    {
-        return response()->json(Container::search($request->all())->get());
+        return Response::json($isDeleted ? 'true' : 'false');
     }
 }

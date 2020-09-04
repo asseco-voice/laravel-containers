@@ -1,10 +1,8 @@
 <?php
 
-use Carbon\Carbon;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Voice\Containers\App\Container;
 
 class CreateContainersTable extends Migration
 {
