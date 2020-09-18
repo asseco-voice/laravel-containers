@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Voice\Containers\Database\Seeds;
 
 use Carbon\Carbon;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Config;
 use Voice\Containers\App\Container;
 
 class ContainerSeeder extends Seeder
@@ -21,38 +23,23 @@ class ContainerSeeder extends Seeder
                 'updated_at' => $now,
             ]);
 
-        $data = [
-            [
-                'name'       => 'Container 1',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'name'       => 'Container 2',
-                'created_at' => $now,
-                'updated_at' => $now,
+        if (Config::get('app.env') !== 'production') {
 
-            ],
-            [
-                'name'       => 'Container 3',
-                'created_at' => $now,
-                'updated_at' => $now,
+            $faker = Factory::create();
 
-            ],
-            [
-                'name'       => 'Container 4',
-                'created_at' => $now,
-                'updated_at' => $now,
+            $amount = 50;
 
-            ],
-            [
-                'name'       => 'Container 5',
-                'created_at' => $now,
-                'updated_at' => $now,
+            $data = [];
+            for ($i = 0; $i < $amount; $i++) {
+                $data[] = [
+                    'name'       => implode(' ', $faker->words) . ' container',
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ];
+            }
 
-            ],
-        ];
+            Container::query()->insert($data);
 
-        Container::query()->insert($data);
+        }
     }
 }
