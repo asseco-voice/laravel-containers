@@ -54,7 +54,8 @@ for models having `Containable` trait.
 
 **Additional notes**: 
 - first time migrating, independently of containable trait, a
-``containers`` table will be created, and a single default container will be seeded. 
+``containers`` table will be created, and a single default container will be seeded if 
+app is in production. Otherwise, it will seed additional containers as well.
 - command ``asseco-voice:containers`` will create a migration to add an additional 
 ``container_id`` field to a model. **Do not** simply transfer that ID to original model  
 migration and delete this one, or upon next ``asseco-voice:containers`` command run, a 
