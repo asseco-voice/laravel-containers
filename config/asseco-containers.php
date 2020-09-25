@@ -1,5 +1,7 @@
 <?php
 
+use Voice\Containers\App\Traits\Containable;
+
 return [
     /**
      * Path to Laravel models. This does not recurse in folders
@@ -12,5 +14,5 @@ return [
     /**
      * Namespace to Containable trait
      */
-    'trait_path'      => 'Voice\Containers\App\Traits\Containable',
+    'trait_path'      => Containable::class,
 ];
