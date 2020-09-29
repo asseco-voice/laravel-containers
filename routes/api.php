@@ -19,7 +19,6 @@ Route::namespace('Voice\Containers\App\Http\Controllers')
     ->middleware('api')
     ->group(function () {
 
-        Route::post('containers/search', 'ContainerController@search')->name('containers.search');
-        Route::apiResource('containers', 'ContainerController');
+        Route::apiResource('containers', ContainerController::class);
 
     });
