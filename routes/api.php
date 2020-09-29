@@ -14,8 +14,7 @@ use Voice\Containers\App\Http\Controllers\ContainerController;
 |
 */
 
-Route::namespace('Voice\Containers\App\Http\Controllers')
-    ->prefix('api')
+Route::prefix('api')
     ->middleware('api')
     ->group(function () {
 
