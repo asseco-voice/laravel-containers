@@ -31,7 +31,7 @@ class ContainerServiceProvider extends ServiceProvider
         $this->registerMigrateMakeCommand();
 
         $this->commands([
-            'asseco-voice.command.migrate.make',
+            'voice.command.migrate.make',
         ]);
     }
 
@@ -42,7 +42,7 @@ class ContainerServiceProvider extends ServiceProvider
      */
     protected function registerCreator()
     {
-        $this->app->singleton('asseco-voice.migration.creator', function ($app) {
+        $this->app->singleton('voice.migration.creator', function ($app) {
             return new MigrationCreator($app['files'], __DIR__ . '/../stubs');
         });
     }
@@ -54,8 +54,8 @@ class ContainerServiceProvider extends ServiceProvider
      */
     protected function registerMigrateMakeCommand()
     {
-        $this->app->singleton('asseco-voice.command.migrate.make', function ($app) {
-            $creator = $app['asseco-voice.migration.creator'];
+        $this->app->singleton('voice.command.migrate.make', function ($app) {
+            $creator = $app['voice.migration.creator'];
             $composer = $app['composer'];
 
             return new MakeContainers($creator, $composer);

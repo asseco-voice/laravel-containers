@@ -48,7 +48,7 @@ Service provider for Laravel will be installed automatically.
 In order to use this repository the following must be done:
 
 1. Each model which requires container support should use ``Containable`` trait. 
-2. Run ``php artisan asseco-voice:containers`` which will generate migrations 
+2. Run ``php artisan voice:containers`` which will generate migrations 
 for models having `Containable` trait. 
 3. Run ``php artisan migrate`` to migrate generated migrations
 
@@ -56,9 +56,9 @@ for models having `Containable` trait.
 - first time migrating, independently of containable trait, a
 ``containers`` table will be created, and a single default container will be seeded if 
 app is in production. Otherwise, it will seed additional containers as well.
-- command ``asseco-voice:containers`` will create a migration to add an additional 
+- command ``voice:containers`` will create a migration to add an additional 
 ``container_id`` field to a model. **Do not** simply transfer that ID to original model  
-migration and delete this one, or upon next ``asseco-voice:containers`` command run, a 
+migration and delete this one, or upon next ``voice:containers`` command run, a 
 new migration will be created.
 
 ``Containable`` trait exposes `containers` relationship, so it doesn't

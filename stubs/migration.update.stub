@@ -15,7 +15,7 @@ class {{ class }} extends Migration
     {
         /**
          * This migration is AUTO-GENERATED, do not modify!
-         * php artisan asseco-voice:containers
+         * php artisan voice:containers
          */
         Schema::table('{{ table }}', function (Blueprint $table) {
             $table->foreignId('container_id')->default(1)->constrained()->onDelete('cascade');

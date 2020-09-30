@@ -16,7 +16,7 @@ class MakeContainers extends MigrateMakeCommand
      *
      * @var string
      */
-    protected $signature = 'asseco-voice:containers
+    protected $signature = 'voice:containers
         {--path= : The location where the migration files should be created}
         {--realpath : Indicate any provided migration file paths are pre-resolved absolute paths}
         {--fullpath : Output the full path of the migrations}';
