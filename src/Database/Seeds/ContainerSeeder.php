@@ -35,6 +35,7 @@ class ContainerSeeder extends Seeder
                     'name'       => implode(' ', $faker->words) . ' container',
                     'created_at' => $now,
                     'updated_at' => $now,
+                    'owner_id'   => $faker->uuid,
                 ];
             }
 
