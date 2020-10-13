@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Container extends Model
 {
-    protected $guarded = ['id'];
+    protected $fillable = ['name', 'owner_id'];
 }
