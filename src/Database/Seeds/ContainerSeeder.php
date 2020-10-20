@@ -24,7 +24,6 @@ class ContainerSeeder extends Seeder
             ]);
 
         if (Config::get('app.env') !== 'production') {
-
             $faker = Factory::create();
 
             $amount = 50;
@@ -40,7 +39,6 @@ class ContainerSeeder extends Seeder
             }
 
             Container::query()->insert($data);
-
         }
     }
 }
