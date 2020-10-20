@@ -4,7 +4,7 @@ use Voice\Containers\App\Traits\Containable;
 
 return [
     /**
-     * Path to Laravel models. This does not recurse in folders
+     * Path to Laravel models. This does not recurse in folders.
      */
     'models_path'     => app_path(),
     /**
@@ -12,7 +12,7 @@ return [
      */
     'model_namespace' => 'App\\',
     /**
-     * Namespace to Containable trait
+     * Namespace to Containable trait.
      */
     'trait_path'      => Containable::class,
 ];

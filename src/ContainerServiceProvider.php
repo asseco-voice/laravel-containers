@@ -25,7 +25,7 @@ class ContainerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->publishes([__DIR__ . '/../config/asseco-containers.php' => config_path('asseco-containers.php'),]);
+        $this->publishes([__DIR__ . '/../config/asseco-containers.php' => config_path('asseco-containers.php')]);
 
         $this->registerCreator();
         $this->registerMigrateMakeCommand();
