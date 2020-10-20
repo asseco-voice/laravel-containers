@@ -17,7 +17,5 @@ use Voice\Containers\App\Http\Controllers\ContainerController;
 Route::prefix('api')
     ->middleware('api')
     ->group(function () {
-
         Route::apiResource('containers', ContainerController::class);
-
     });

@@ -47,11 +47,15 @@ class MakeContainers extends MigrateMakeCommand
         $results = scandir($path);
 
         foreach ($results as $result) {
-            if ($result === '.' or $result === '..') continue;
+            if ($result === '.' or $result === '..') {
+                continue;
+            }
 
             $filename = $path . '/' . $result;
 
-            if (is_dir($filename)) continue;
+            if (is_dir($filename)) {
+                continue;
+            }
 
             $result = substr($result, 0, -4);
 
@@ -59,6 +63,7 @@ class MakeContainers extends MigrateMakeCommand
                 $models[] = $result;
             }
         }
+
         return $models;
     }
 
