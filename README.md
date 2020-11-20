@@ -66,7 +66,13 @@ new migration will be created.
 ``Containable`` trait exposes `containers` relationship, so it doesn't
 have to be explicitly set on a model.
 
-This package also exposes ``/api/containers`` endpoints for standard
-Laravel CRUD actions.
-Also, an ``/api/containers/search`` endpoint is exposed, 
-which can be used like [this](https://github.com/asseco-voice/laravel-json-query-builder).
+This package also exposes ``/api/containers`` endpoints for standard Laravel CRUD actions.
+
+## Customizations
+
+Publish the configuration with:
+
+    php artisan vendor:publish --provider="Voice\Containers\ContainerServiceProvider"
+
+You can extend the original ``Container`` class if needed. Insert it instead of current `Container`
+class under ``model`` key in the configuration.

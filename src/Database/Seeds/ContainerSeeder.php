@@ -16,12 +16,12 @@ class ContainerSeeder extends Seeder
     {
         $now = Carbon::now();
 
-        Container::query()->updateOrCreate(
-            ['name' => 'Default'],
-            [
-                'created_at' => $now,
-                'updated_at' => $now,
-            ]);
+        /**
+         * @var $container Container
+         */
+        $container = Config::get('asseco-containers.model');
+
+        $container::query()->upsert(['name' => 'Default'], 'name');
 
         if (Config::get('app.env') !== 'production') {
             $faker = Factory::create();
@@ -38,7 +38,7 @@ class ContainerSeeder extends Seeder
                 ];
             }
 
-            Container::query()->insert($data);
+            $container::query()->insert($data);
         }
     }
 }

@@ -8,11 +8,19 @@ use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Response;
 use Voice\Containers\App\Container;
 
 class ContainerController extends Controller
 {
+    public Container $container;
+
+    public function __construct()
+    {
+        $this->container = Config::get('asseco-containers.model');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +28,7 @@ class ContainerController extends Controller
      */
     public function index(): JsonResponse
     {
-        return Response::json(Container::all());
+        return Response::json($this->container::all());
     }
 
     /**
@@ -31,7 +39,7 @@ class ContainerController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
-        $container = Container::query()->create($request->all());
+        $container = $this->container::query()->create($request->all());
 
         return Response::json($container);
     }

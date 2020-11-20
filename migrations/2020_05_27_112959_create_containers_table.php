@@ -15,9 +15,9 @@ class CreateContainersTable extends Migration
     {
         Schema::create('containers', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('owner_id')->nullable();
+            $table->timestamps();
         });
     }
 
