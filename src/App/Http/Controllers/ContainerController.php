@@ -18,7 +18,7 @@ class ContainerController extends Controller
 
     public function __construct()
     {
-        $this->container = Config::get('asseco-containers.model');
+        $this->container = config('asseco-containers.model');
     }
 
     /**

@@ -15,7 +15,7 @@ trait Containable
         /**
          * @var $container Container
          */
-        $container = Config::get('asseco-containers.model');
+        $container = config('asseco-containers.model');
 
         return $this->belongsTo($container);
     }
