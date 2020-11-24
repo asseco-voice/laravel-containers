@@ -8,13 +8,11 @@ use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Response;
 use Voice\Containers\App\Container;
 
 class ContainerController extends Controller
 {
-    public Container $container;
+    public string $container;
 
     public function __construct()
     {
@@ -28,7 +26,7 @@ class ContainerController extends Controller
      */
     public function index(): JsonResponse
     {
-        return Response::json($this->container::all());
+        return response()->json($this->container::all());
     }
 
     /**
@@ -41,7 +39,7 @@ class ContainerController extends Controller
     {
         $container = $this->container::query()->create($request->all());
 
-        return Response::json($container);
+        return response()->json($container->refresh());
     }
 
     /**
@@ -52,7 +50,7 @@ class ContainerController extends Controller
      */
     public function show(Container $container): JsonResponse
     {
-        return Response::json($container);
+        return response()->json($container);
     }
 
     /**
@@ -64,9 +62,9 @@ class ContainerController extends Controller
      */
     public function update(Request $request, Container $container): JsonResponse
     {
-        $isUpdated = $container->update($request->all());
+        $container->update($request->all());
 
-        return Response::json($isUpdated ? 'true' : 'false');
+        return response()->json($container->refresh());
     }
 
     /**
@@ -80,6 +78,6 @@ class ContainerController extends Controller
     {
         $isDeleted = $container->delete();
 
-        return Response::json($isDeleted ? 'true' : 'false');
+        return response()->json($isDeleted ? 'true' : 'false');
     }
 }
