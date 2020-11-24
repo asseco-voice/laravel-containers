@@ -12,11 +12,12 @@ use Voice\Containers\App\Container;
 
 class ContainerController extends Controller
 {
-    public string $container;
+    public Container $container;
 
     public function __construct()
     {
-        $this->container = config('asseco-containers.model');
+        $model = config('asseco-containers.model');
+        $this->container = new $model;
     }
 
     /**
