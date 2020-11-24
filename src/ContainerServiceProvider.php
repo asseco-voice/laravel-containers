@@ -42,7 +42,7 @@ class ContainerServiceProvider extends ServiceProvider
      */
     protected function registerCreator()
     {
-        $this->app->singleton('voice.migration.creator', function ($app) {
+        app()->singleton('voice.migration.creator', function ($app) {
             return new MigrationCreator($app['files'], __DIR__ . '/../stubs');
         });
     }
@@ -54,7 +54,7 @@ class ContainerServiceProvider extends ServiceProvider
      */
     protected function registerMigrateMakeCommand()
     {
-        $this->app->singleton('voice.command.migrate.make', function ($app) {
+        app()->singleton('voice.command.migrate.make', function ($app) {
             $creator = $app['voice.migration.creator'];
             $composer = $app['composer'];
 

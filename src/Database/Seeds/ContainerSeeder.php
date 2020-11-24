@@ -4,26 +4,22 @@ declare(strict_types=1);
 
 namespace Voice\Containers\Database\Seeds;
 
-use Carbon\Carbon;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Config;
 use Voice\Containers\App\Container;
 
 class ContainerSeeder extends Seeder
 {
     public function run(): void
     {
-        $now = Carbon::now();
-
         /**
          * @var $container Container
          */
-        $container = Config::get('asseco-containers.model');
+        $container = config('asseco-containers.model');
 
         $container::query()->upsert(['name' => 'Default'], 'name');
 
-        if (Config::get('app.env') !== 'production') {
+        if (config('app.env') !== 'production') {
             $faker = Factory::create();
 
             $amount = 50;
@@ -31,14 +27,12 @@ class ContainerSeeder extends Seeder
             $data = [];
             for ($i = 0; $i < $amount; $i++) {
                 $data[] = [
-                    'name'       => implode(' ', $faker->words) . ' container',
-                    'created_at' => $now,
-                    'updated_at' => $now,
-                    'owner_id'   => $faker->uuid,
+                    'name'     => implode(' ', $faker->words) . ' container',
+                    'owner_id' => $faker->uuid,
                 ];
             }
 
-            $container::query()->insert($data);
+            $container::query()->upsert($data, 'name');
         }
     }
 }

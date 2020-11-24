@@ -42,8 +42,8 @@ class MakeContainers extends MigrateMakeCommand
 
     protected function getModelsWithContainableTrait(): array
     {
-        $path = Config::get('asseco-containers.models_path');
-        $namespace = Config::get('asseco-containers.model_namespace');
+        $path = config('asseco-containers.models_path');
+        $namespace = config('asseco-containers.model_namespace');
         $models = [];
         $results = scandir($path);
 
@@ -71,7 +71,7 @@ class MakeContainers extends MigrateMakeCommand
     protected function hasContainableTrait($class): bool
     {
         $traits = class_uses($class);
-        $containable = Config::get('asseco-containers.trait_path');
+        $containable = config('asseco-containers.trait_path');
 
         return in_array($containable, $traits);
     }
