@@ -20,7 +20,7 @@ return [
     'trait_path'      => Containable::class,
 
     /**
-     * Container model which will be bound to the app
+     * Container model which will be bound to the app.
      */
     'model'           => Container::class,
 ];
