@@ -49,10 +49,12 @@ Service provider for Laravel will be installed automatically.
 
 In order to use this repository the following must be done:
 
+1. Publish the package migrations with `php artisan vendor:publish --tag="asseco-container-migrations"`
+and tweak it, if needed.
 1. Each model which requires container support should use ``Containable`` trait. 
-2. Run ``php artisan voice:containers`` which will generate migrations 
+1. Run ``php artisan voice:containers`` which will generate migrations 
 for models having `Containable` trait. 
-3. Run ``php artisan migrate`` to migrate generated migrations
+1. Run ``php artisan migrate`` to migrate generated migrations
 
 **Additional notes**: 
 - first time migrating, independently of containable trait, a
@@ -72,7 +74,7 @@ This package also exposes ``/api/containers`` endpoints for standard Laravel CRU
 
 Publish the configuration with:
 
-    php artisan vendor:publish --provider="Voice\Containers\ContainerServiceProvider"
+    php artisan vendor:publish --tag="asseco-container-config"
 
 You can extend the original ``Container`` class if needed. Insert it instead of current `Container`
 class under ``model`` key in the configuration.

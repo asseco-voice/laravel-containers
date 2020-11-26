@@ -5,6 +5,11 @@ use Voice\Containers\App\Traits\Containable;
 
 return [
     /**
+     * Container model which will be bound to the app.
+     */
+    'model'           => Container::class,
+
+    /**
      * Path to Laravel models. This does not recurse in folders.
      */
     'models_path'     => app_path(),
@@ -20,7 +25,7 @@ return [
     'trait_path'      => Containable::class,
 
     /**
-     * Container model which will be bound to the app.
+     * Path to original stub which will create the migration upon publishing.
      */
-    'model'           => Container::class,
+    'stub_path' => '/../migrations/create_containers_table.php.stub',
 ];
