@@ -25,11 +25,11 @@ class ContainerServiceProvider extends ServiceProvider
         $timestamp = now()->format('Y_m_d_His');
 
         $this->publishes([
-            __DIR__ . config('asseco-containers.stub_path') => database_path("migrations/{$timestamp}_create_containers_table.php")
+            __DIR__ . config('asseco-containers.stub_path') => database_path("migrations/{$timestamp}_create_containers_table.php"),
         ], 'asseco-containers-migrations');
 
         $this->publishes([
-            __DIR__ . '/../config/asseco-containers.php' => config_path('asseco-containers.php')
+            __DIR__ . '/../config/asseco-containers.php' => config_path('asseco-containers.php'),
         ], 'asseco-containers-config');
 
         $this->registerCreator();
