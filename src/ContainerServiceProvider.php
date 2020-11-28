@@ -1,10 +1,10 @@
 <?php
 
-namespace Voice\Containers;
+namespace Asseco\Containers;
 
 use Illuminate\Database\Migrations\MigrationCreator;
 use Illuminate\Support\ServiceProvider;
-use Voice\Containers\App\Console\Commands\MakeContainers;
+use Asseco\Containers\App\Console\Commands\MakeContainers;
 
 class ContainerServiceProvider extends ServiceProvider
 {

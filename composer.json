@@ -21,13 +21,13 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "Voice\\Containers\\": "src/"
+            "Asseco\\Containers\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Voice\\Containers\\ContainerServiceProvider"
+                "Asseco\\Containers\\ContainerServiceProvider"
             ]
         }
     }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Voice\Containers\App\Console\Commands;
+namespace Asseco\Containers\App\Console\Commands;
 
 use Illuminate\Database\Console\Migrations\MigrateMakeCommand;
 use Illuminate\Database\Console\Migrations\TableGuesser;

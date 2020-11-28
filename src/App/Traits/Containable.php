@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Voice\Containers\App\Traits;
+namespace Asseco\Containers\App\Traits;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 

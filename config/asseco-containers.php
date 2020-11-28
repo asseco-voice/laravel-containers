@@ -1,7 +1,7 @@
 <?php
 
-use Voice\Containers\App\Container;
-use Voice\Containers\App\Traits\Containable;
+use Asseco\Containers\App\Container;
+use Asseco\Containers\App\Traits\Containable;
 
 return [
     /**

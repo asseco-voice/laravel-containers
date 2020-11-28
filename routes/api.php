@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Voice\Containers\App\Http\Controllers\ContainerController;
+use Asseco\Containers\App\Http\Controllers\ContainerController;
 
 /*
 |--------------------------------------------------------------------------

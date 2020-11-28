@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Voice\Containers\App;
+namespace Asseco\Containers\App;
 
 use Illuminate\Database\Eloquent\Model;
 
