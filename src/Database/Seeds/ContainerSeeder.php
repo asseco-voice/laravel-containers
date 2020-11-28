@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Asseco\Containers\Database\Seeds;
 
+use Asseco\Containers\App\Container;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
-use Asseco\Containers\App\Container;
 
 class ContainerSeeder extends Seeder
 {

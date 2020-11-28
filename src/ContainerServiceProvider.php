@@ -2,9 +2,9 @@
 
 namespace Asseco\Containers;
 
+use Asseco\Containers\App\Console\Commands\MakeContainers;
 use Illuminate\Database\Migrations\MigrationCreator;
 use Illuminate\Support\ServiceProvider;
-use Asseco\Containers\App\Console\Commands\MakeContainers;
 
 class ContainerServiceProvider extends ServiceProvider
 {

@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Asseco\Containers\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Asseco\Containers\App\Container;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Asseco\Containers\App\Container;
 
 class ContainerController extends Controller
 {
