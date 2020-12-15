@@ -19,7 +19,7 @@ class ContainerSeeder extends Seeder
 
         $container::query()->upsert(['name' => 'Default'], 'name');
 
-        if (config('app.env') !== 'production') {
+        if (config('app.env') === 'local') {
             $faker = Factory::create();
 
             $amount = 50;
