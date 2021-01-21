@@ -6,6 +6,7 @@ namespace Asseco\Containers\Database\Seeds;
 
 use Asseco\Containers\App\Models\Container;
 use Faker\Factory;
+use Faker\Generator;
 use Illuminate\Database\Seeder;
 
 class ContainerSeeder extends Seeder
@@ -20,6 +21,9 @@ class ContainerSeeder extends Seeder
         $container::query()->upsert(['name' => 'Default'], 'name');
 
         if (config('app.env') === 'local') {
+            /**
+             * @var Generator $faker
+             */
             $faker = Factory::create();
 
             $amount = 50;
