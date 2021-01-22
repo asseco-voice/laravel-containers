@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Asseco\Containers\App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Asseco\Containers\App\Container;
+use Asseco\Containers\App\Models\Container;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

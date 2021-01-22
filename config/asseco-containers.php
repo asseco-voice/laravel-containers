@@ -1,6 +1,6 @@
 <?php
 
-use Asseco\Containers\App\Container;
+use Asseco\Containers\App\Models\Container;
 use Asseco\Containers\App\Traits\Containable;
 
 return [

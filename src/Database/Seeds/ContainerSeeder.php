@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Asseco\Containers\Database\Seeds;
 
-use Asseco\Containers\App\Container;
+use Asseco\Containers\App\Models\Container;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 
