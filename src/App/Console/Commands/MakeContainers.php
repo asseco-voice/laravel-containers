@@ -41,16 +41,17 @@ class MakeContainers extends MigrateMakeCommand
 
     protected function getModelsWithContainableTrait(): array
     {
+        $path = config('asseco-containers.models_path');
         $namespace = config('asseco-containers.model_namespace');
         $models = [];
-        $results = scandir(app_path());
+        $results = scandir($path);
 
         foreach ($results as $result) {
-            if ($result === '.' or $result === '..') {
+            if ($result === '.' || $result === '..') {
                 continue;
             }
 
-            $filename = app_path() . '/' . $result;
+            $filename = $path . '/' . $result;
 
             if (is_dir($filename)) {
                 continue;
