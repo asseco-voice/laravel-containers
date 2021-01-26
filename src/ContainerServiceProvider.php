@@ -30,11 +30,11 @@ class ContainerServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__ . '/../database/migrations' => database_path("migrations/{$timestamp}_create_containers_table.php"),
-        ], 'asseco-containers-migrations');
+        ], 'asseco-containers');
 
         $this->publishes([
             __DIR__ . '/../config/asseco-containers.php' => config_path('asseco-containers.php'),
-        ], 'asseco-containers-config');
+        ], 'asseco-containers');
 
         $this->registerCreator();
         $this->registerMigrateMakeCommand();

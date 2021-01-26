@@ -49,12 +49,16 @@ Service provider for Laravel will be installed automatically.
 
 In order to use this repository the following must be done:
 
-1. Publish the package migrations with `php artisan vendor:publish --tag="asseco-container-migrations"`
-and tweak it, if needed.
 1. Each model which requires container support should use ``Containable`` trait. 
 1. Run ``php artisan asseco:containers`` which will generate migrations 
 for models having `Containable` trait. 
 1. Run ``php artisan migrate`` to migrate generated migrations
+
+If you'd like to customize original package migrations, you can publish 
+package configuration with `php artisan vendor:publish --tag="asseco-containers"`.
+You can then tweak published migration, but be sure to set in the configuration
+file ``'runs_migrations' => false`` so that package migrations don't run at the
+same time with your custom ones. 
 
 **Additional notes**: 
 - first time migrating, independently of containable trait, a
