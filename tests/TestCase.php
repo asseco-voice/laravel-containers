@@ -15,7 +15,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
         // TODO: I really hope there is a better way to handle this...
         foreach (scandir(database_path('migrations')) as $migration) {
             if (!str_starts_with($migration, '.')) {
-                exec("rm " . database_path("migrations/$migration"));
+                exec('rm ' . database_path("migrations/$migration"));
             }
         }
 
