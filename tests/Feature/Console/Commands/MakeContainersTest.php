@@ -13,7 +13,7 @@ class MakeContainersTest extends TestCase
     {
         config([
             'asseco-containers.models_path'     => __DIR__ . '/../../..',
-            'asseco-containers.model_namespace' => 'Asseco\\Containers\\Tests\\'
+            'asseco-containers.model_namespace' => 'Asseco\\Containers\\Tests\\',
         ]);
 
         $this->artisan('asseco:containers')
@@ -25,6 +25,6 @@ class MakeContainersTest extends TestCase
             return strpos($file, 'add_container_id_to_containable_models_table');
         });
 
-        $this->assertTrue((bool)$migrationExists);
+        $this->assertTrue((bool) $migrationExists);
     }
 }
