@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Asseco\Containers\Tests\Feature;
+namespace Asseco\Containers\Tests\Feature\Http\Controllers;
 
 use Asseco\Containers\App\Models\Container;
 use Asseco\Containers\Tests\TestCase;
