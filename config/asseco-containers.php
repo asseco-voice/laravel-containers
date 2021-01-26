@@ -20,7 +20,8 @@ return [
     'trait_path'      => Containable::class,
 
     /**
-     * Path to original stub which will create the migration upon publishing.
+     * Should the package run the migrations. Set to false if you're publishing
+     * and changing default migrations.
      */
-    'stub_path' => '/../migrations/create_containers_table.php.stub',
+    'runs_migrations' => true,
 ];

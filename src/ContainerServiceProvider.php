@@ -15,6 +15,10 @@ class ContainerServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/asseco-containers.php', 'asseco-containers');
         $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
+
+        if (config('asseco-containers.runs_migrations')) {
+            $this->loadMigrationsFrom(__DIR__ . '/../migrations');
+        }
     }
 
     /**
@@ -25,7 +29,7 @@ class ContainerServiceProvider extends ServiceProvider
         $timestamp = now()->format('Y_m_d_His');
 
         $this->publishes([
-            __DIR__ . config('asseco-containers.stub_path') => database_path("migrations/{$timestamp}_create_containers_table.php"),
+            __DIR__ . '/../database/migrations' => database_path("migrations/{$timestamp}_create_containers_table.php"),
         ], 'asseco-containers-migrations');
 
         $this->publishes([
