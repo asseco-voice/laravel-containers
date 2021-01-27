@@ -6,7 +6,6 @@ namespace Asseco\Containers\App\Console\Commands;
 
 use Illuminate\Database\Console\Migrations\MigrateMakeCommand;
 use Illuminate\Database\Console\Migrations\TableGuesser;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
 
@@ -48,7 +47,7 @@ class MakeContainers extends MigrateMakeCommand
         $results = scandir($path);
 
         foreach ($results as $result) {
-            if ($result === '.' or $result === '..') {
+            if ($result === '.' || $result === '..') {
                 continue;
             }
 

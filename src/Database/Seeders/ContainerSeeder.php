@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Asseco\Containers\Database\Seeds;
+namespace Asseco\Containers\Database\Seeders;
 
 use Asseco\Containers\App\Models\Container;
 use Faker\Factory;
