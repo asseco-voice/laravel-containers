@@ -12,7 +12,7 @@ return [
     /**
      * Path to Laravel models. This does not recurse in folders.
      */
-    'models_path'     => app_path(),
+    'models_path'     => app_path('Models'),
 
     /**
      * Namespace for Laravel models.
