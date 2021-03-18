@@ -21,7 +21,7 @@ class ContainerFactory extends Factory
     public function definition()
     {
         return [
-            'name'       => $this->faker->word,
+            'name'       => $this->faker->unique()->word,
             'owner_id'   => $this->faker->randomNumber(),
             'created_at' => now(),
             'updated_at' => now(),
