@@ -33,7 +33,6 @@ class ContainerControllerTest extends TestCase
         $this
             ->postJson(route('containers.store'), $request)
             ->assertJsonFragment([
-                'id'   => 1,
                 'name' => $request['name'],
             ]);
 
@@ -45,7 +44,7 @@ class ContainerControllerTest extends TestCase
     {
         $containers = Container::factory()->count(5)->create();
 
-        $containerId = $containers->first()->id;
+        $containerId = $containers->random()->id;
 
         $this
             ->getJson(route('containers.show', $containerId))
