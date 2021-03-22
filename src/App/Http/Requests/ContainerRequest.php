@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Asseco\Attachments\App\Http\Requests;
+namespace Asseco\Containers\App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ContainerRequest extends FormRequest
@@ -26,8 +27,22 @@ class ContainerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'     => 'required|string|unique:containers,name' . ($this->container ? ',' . $this->container->id : null),
-            'owner_id' => 'nullable|string',
+            'name'     => 'required|string|unique:containers,name' . ($this->route('container') ? ',' . $this->route('container')->id : null),
+            'owner_id' => 'nullable',
         ];
+    }
+
+    /**
+     * Dynamically set validator from 'required' to 'sometimes' if resource is being updated
+     *
+     * @param Validator $validator
+     */
+    public function withValidator(Validator $validator)
+    {
+        $requiredOnCreate = ['name'];
+
+        $validator->sometimes($requiredOnCreate, 'sometimes', function () {
+            return $this->container !== null;
+        });
     }
 }

@@ -43,11 +43,13 @@ class ContainerControllerTest extends TestCase
     /** @test */
     public function can_return_container_by_id()
     {
-        Container::factory()->count(5)->create();
+        $containers = Container::factory()->count(5)->create();
+
+        $containerId = $containers->first()->id;
 
         $this
-            ->getJson(route('containers.show', 3))
-            ->assertJsonFragment(['id' => 3]);
+            ->getJson(route('containers.show', $containerId))
+            ->assertJsonFragment(['id' => $containerId]);
     }
 
     /** @test */
