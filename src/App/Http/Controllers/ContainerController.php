@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Asseco\Containers\App\Http\Controllers;
 
+use Asseco\Containers\App\Http\Requests\ContainerRequest;
 use Asseco\Containers\App\Models\Container;
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class ContainerController extends Controller
 {
@@ -32,12 +32,12 @@ class ContainerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param ContainerRequest $request
      * @return JsonResponse
      */
-    public function store(Request $request): JsonResponse
+    public function store(ContainerRequest $request): JsonResponse
     {
-        $container = $this->container::query()->create($request->all());
+        $container = $this->container::query()->create($request->validated());
 
         return response()->json($container->refresh());
     }
@@ -56,13 +56,13 @@ class ContainerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param ContainerRequest $request
      * @param Container $container
      * @return JsonResponse
      */
-    public function update(Request $request, Container $container): JsonResponse
+    public function update(ContainerRequest $request, Container $container): JsonResponse
     {
-        $container->update($request->all());
+        $container->update($request->validated());
 
         return response()->json($container->refresh());
     }
