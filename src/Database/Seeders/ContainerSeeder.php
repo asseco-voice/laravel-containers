@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Asseco\Containers\Database\Seeders;
 
 use Asseco\Containers\App\Models\Container;
-use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 class ContainerSeeder extends Seeder
@@ -19,20 +18,8 @@ class ContainerSeeder extends Seeder
 
         $container::query()->upsert(['name' => 'Default'], 'name');
 
-        if (config('app.env') === 'local') {
-            $faker = Factory::create();
-
-            $amount = 50;
-
-            $data = [];
-            for ($i = 0; $i < $amount; $i++) {
-                $data[] = [
-                    'name'     => implode(' ', $faker->words) . ' container',
-                    'owner_id' => $faker->uuid,
-                ];
-            }
-
-            $container::query()->upsert($data, 'name');
+        if (config('app.env') !== 'production') {
+            $container::factory()->count(50)->create();
         }
     }
 }
