@@ -12,13 +12,6 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
     {
         parent::setUp();
 
-        // TODO: I really hope there is a better way to handle this...
-        foreach (scandir(database_path('migrations')) as $migration) {
-            if (!str_starts_with($migration, '.')) {
-                exec('rm ' . database_path("migrations/$migration"));
-            }
-        }
-
         $this->runLaravelMigrations();
     }
 
@@ -27,8 +20,11 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
         return [ContainerServiceProvider::class];
     }
 
-    protected function getEnvironmentSetUp($app)
+    protected function tearDown(): void
     {
-        // perform environment setup
+        parent::tearDown();
+
+        // Clean up migrations generated through stubs publishing
+        exec('rm -f ' . database_path('migrations/*'));
     }
 }
