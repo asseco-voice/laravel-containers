@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Asseco\Containers;
 
 use Asseco\Containers\App\Console\Commands\MakeContainers;
