@@ -28,10 +28,8 @@ class ContainerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $timestamp = now()->format('Y_m_d_His');
-
         $this->publishes([
-            __DIR__ . '/../migrations' => database_path("migrations/{$timestamp}_create_containers_table.php"),
+            __DIR__ . '/../migrations' => database_path('migrations'),
         ], 'asseco-containers');
 
         $this->publishes([
