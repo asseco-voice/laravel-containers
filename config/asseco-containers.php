@@ -7,7 +7,7 @@ use Asseco\Containers\App\Traits\Containable;
 return [
 
     /**
-     * Model bindings
+     * Model bindings.
      */
     'models' => [
         'container' => Container::class,
