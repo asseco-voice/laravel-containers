@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Asseco\Containers\App\Http\Controllers;
 
+use Asseco\Containers\App\Contracts\Container as ContainerContract;
 use Asseco\Containers\App\Http\Requests\ContainerRequest;
 use Asseco\Containers\App\Models\Container;
 use Exception;
@@ -11,12 +12,11 @@ use Illuminate\Http\JsonResponse;
 
 class ContainerController extends Controller
 {
-    public Container $container;
+    public ContainerContract $container;
 
-    public function __construct()
+    public function __construct(ContainerContract $container)
     {
-        $model = config('asseco-containers.model');
-        $this->container = new $model;
+        $this->container = $container;
     }
 
     /**

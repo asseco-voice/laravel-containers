@@ -8,7 +8,7 @@ use Asseco\Containers\Database\Factories\ContainerFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Container extends Model
+class Container extends Model implements \Asseco\Containers\App\Contracts\Container
 {
     use HasFactory;
 

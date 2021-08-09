@@ -10,7 +10,7 @@ class ContainerFactory extends Factory
 {
     public function modelName()
     {
-        return config('asseco-containers.model') ?: parent::modelName();
+        return config('asseco-containers.models.container');
     }
 
     /**
