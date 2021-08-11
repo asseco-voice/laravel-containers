@@ -10,6 +10,6 @@ trait Containable
 {
     public function container(): BelongsTo
     {
-        return $this->belongsTo(config('asseco-containers.model'));
+        return $this->belongsTo(config('asseco-containers.models.container'));
     }
 }

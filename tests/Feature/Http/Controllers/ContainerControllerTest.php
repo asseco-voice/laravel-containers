@@ -4,31 +4,42 @@ declare(strict_types=1);
 
 namespace Asseco\Containers\Tests\Feature\Http\Controllers;
 
-use Asseco\Containers\App\Models\Container;
+use Asseco\Containers\App\Contracts\Container;
 use Asseco\Containers\Tests\TestCase;
 
 class ContainerControllerTest extends TestCase
 {
+    protected Container $container;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->container = app(Container::class);
+    }
+
     /** @test */
     public function can_fetch_all_containers()
     {
-        $this->withExceptionHandling()
+        $this
             ->getJson(route('containers.index'))
             ->assertJsonCount(0);
 
-        Container::factory()->count(5)->create();
+        $this->container::factory()->count(5)->create();
 
         $this
             ->getJson(route('containers.index'))
             ->assertJsonCount(5);
 
-        $this->assertCount(5, Container::all());
+        $this->assertCount(5, $this->container::all());
     }
 
     /** @test */
     public function creates_container()
     {
-        $request = Container::factory()->make()->toArray();
+        $this->withoutExceptionHandling();
+
+        $request = $this->container::factory()->make()->toArray();
 
         $this
             ->postJson(route('containers.store'), $request)
@@ -36,13 +47,13 @@ class ContainerControllerTest extends TestCase
                 'name' => $request['name'],
             ]);
 
-        $this->assertCount(1, Container::all());
+        $this->assertCount(1, $this->container::all());
     }
 
     /** @test */
     public function can_return_container_by_id()
     {
-        $containers = Container::factory()->count(5)->create();
+        $containers = $this->container::factory()->count(5)->create();
 
         $containerId = $containers->random()->id;
 
@@ -54,7 +65,7 @@ class ContainerControllerTest extends TestCase
     /** @test */
     public function can_update_container()
     {
-        $Container = Container::factory()->create();
+        $Container = $this->container::factory()->create();
 
         $request = [
             'name' => 'updated_name',
@@ -72,14 +83,14 @@ class ContainerControllerTest extends TestCase
     /** @test */
     public function can_delete_container()
     {
-        $Container = Container::factory()->create();
+        $Container = $this->container::factory()->create();
 
-        $this->assertCount(1, Container::all());
+        $this->assertCount(1, $this->container::all());
 
         $this
             ->deleteJson(route('containers.destroy', $Container->id))
             ->assertOk();
 
-        $this->assertCount(0, Container::all());
+        $this->assertCount(0, $this->container::all());
     }
 }

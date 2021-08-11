@@ -1,5 +1,6 @@
 <?php
 
+use Asseco\BlueprintAudit\App\MigrationMethodPicker;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,10 +15,16 @@ class CreateContainersTable extends Migration
     public function up()
     {
         Schema::create('containers', function (Blueprint $table) {
-            $table->id();
+            if (config('asseco-containers.migrations.uuid')) {
+                $table->uuid('id')->primary();
+            } else {
+                $table->id();
+            }
+
             $table->string('name')->unique();
             $table->string('owner_id')->nullable();
-            $table->timestamps();
+
+            MigrationMethodPicker::pick($table, config('asseco-containers.migrations.timestamps'));
         });
     }
 
