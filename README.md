@@ -74,11 +74,8 @@ have to be explicitly set on a model.
 
 This package also exposes ``/api/containers`` endpoints for standard Laravel CRUD actions.
 
-## Customizations
+# Extending the package
 
-Publish the configuration with:
-
-    php artisan vendor:publish --tag="asseco-container-config"
-
-You can extend the original ``Container`` class if needed. Insert it instead of current `Container`
-class under ``model`` key in the configuration.
+Publishing the configuration will enable you to change package models as
+well as controlling how migrations behave. If extending the model, make sure
+you're extending the original model in your implementation.
