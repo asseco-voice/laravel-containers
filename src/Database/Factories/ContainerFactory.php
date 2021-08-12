@@ -28,7 +28,7 @@ class ContainerFactory extends Factory
             'updated_at' => now(),
         ];
 
-        if(config('asseco-containers.migrations.uuid')){
+        if (config('asseco-containers.migrations.uuid')) {
             $data = array_merge($data, [
                 'owner_id'   => Str::uuid(),
             ]);

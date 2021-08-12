@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Asseco\Containers;
 
-use Asseco\Containers\App\Console\Commands\MakeContainers;
 use Asseco\Containers\App\Contracts\Container;
-use Illuminate\Database\Migrations\MigrationCreator;
 use Illuminate\Support\ServiceProvider;
 
 class ContainerServiceProvider extends ServiceProvider
