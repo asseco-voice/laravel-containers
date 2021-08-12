@@ -19,12 +19,4 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
     {
         return [ContainerServiceProvider::class];
     }
-
-    protected function tearDown(): void
-    {
-        parent::tearDown();
-
-        // Clean up migrations generated through stubs publishing
-        exec('rm -f ' . database_path('migrations/*'));
-    }
 }

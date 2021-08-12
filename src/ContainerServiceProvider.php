@@ -38,39 +38,5 @@ class ContainerServiceProvider extends ServiceProvider
         ], 'asseco-containers');
 
         $this->app->bind(Container::class, config('asseco-containers.models.container'));
-
-        $this->registerCreator();
-        $this->registerMigrateMakeCommand();
-
-        $this->commands([
-            'voice.command.migrate.make',
-        ]);
-    }
-
-    /**
-     * Register the migration creator.
-     *
-     * @return void
-     */
-    protected function registerCreator()
-    {
-        app()->singleton('voice.migration.creator', function ($app) {
-            return new MigrationCreator($app['files'], __DIR__ . '/../stubs');
-        });
-    }
-
-    /**
-     * Register the command.
-     *
-     * @return void
-     */
-    protected function registerMigrateMakeCommand()
-    {
-        app()->singleton('voice.command.migrate.make', function ($app) {
-            $creator = $app['voice.migration.creator'];
-            $composer = $app['composer'];
-
-            return new MakeContainers($creator, $composer);
-        });
     }
 }

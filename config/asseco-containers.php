@@ -2,7 +2,6 @@
 
 use Asseco\BlueprintAudit\App\MigrationMethodPicker;
 use Asseco\Containers\App\Models\Container;
-use Asseco\Containers\App\Traits\Containable;
 
 return [
 
@@ -13,7 +12,7 @@ return [
         'container' => Container::class,
     ],
 
-    'migrations'      => [
+    'migrations' => [
 
         /**
          * UUIDs as primary keys.
@@ -34,18 +33,4 @@ return [
         'run'        => true,
     ],
 
-    /**
-     * Path to Laravel models. This does not recurse in folders.
-     */
-    'models_path'     => app_path('Models'),
-
-    /**
-     * Namespace for Laravel models.
-     */
-    'model_namespace' => 'App\\Models\\',
-
-    /**
-     * Namespace to Containable trait.
-     */
-    'trait_path'      => Containable::class,
 ];
