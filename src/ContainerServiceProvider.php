@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Asseco\Containers;
 
 use Asseco\Containers\App\Contracts\Container;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class ContainerServiceProvider extends ServiceProvider
@@ -36,5 +37,7 @@ class ContainerServiceProvider extends ServiceProvider
         ], 'asseco-containers');
 
         $this->app->bind(Container::class, config('asseco-containers.models.container'));
+
+        Route::model('container', get_class(app(Container::class)));
     }
 }
