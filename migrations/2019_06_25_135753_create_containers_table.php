@@ -4,6 +4,7 @@ use Asseco\BlueprintAudit\App\MigrationMethodPicker;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateContainersTable extends Migration
 {
@@ -25,6 +26,8 @@ class CreateContainersTable extends Migration
             $table->string('owner_id')->nullable();
 
             MigrationMethodPicker::pick($table, config('asseco-containers.migrations.timestamps'));
+
+            $this->seedData();
         });
     }
 
@@ -36,5 +39,16 @@ class CreateContainersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('containers');
+    }
+
+    protected function seedData(): void
+    {
+        $data = [
+            'name'       => 'Default',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+
+        DB::table('containers')->insert($data);
     }
 }

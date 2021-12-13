@@ -16,10 +16,6 @@ class ContainerSeeder extends Seeder
          */
         $container = app(Container::class);
 
-        $container::query()->create(['name' => 'Default']);
-
-        if (config('app.env') !== 'production') {
-            $container::factory()->count(50)->create();
-        }
+        $container::factory()->count(50)->create();
     }
 }
