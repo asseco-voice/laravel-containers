@@ -32,7 +32,7 @@ class ContainerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param ContainerRequest $request
+     * @param  ContainerRequest  $request
      * @return JsonResponse
      */
     public function store(ContainerRequest $request): JsonResponse
@@ -45,7 +45,7 @@ class ContainerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Container $container
+     * @param  Container  $container
      * @return JsonResponse
      */
     public function show(Container $container): JsonResponse
@@ -56,8 +56,8 @@ class ContainerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param ContainerRequest $request
-     * @param Container $container
+     * @param  ContainerRequest  $request
+     * @param  Container  $container
      * @return JsonResponse
      */
     public function update(ContainerRequest $request, Container $container): JsonResponse
@@ -70,8 +70,9 @@ class ContainerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Container $container
+     * @param  Container  $container
      * @return JsonResponse
+     *
      * @throws Exception
      */
     public function destroy(Container $container): JsonResponse
