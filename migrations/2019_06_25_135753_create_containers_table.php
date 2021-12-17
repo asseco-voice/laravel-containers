@@ -3,8 +3,9 @@
 use Asseco\BlueprintAudit\App\MigrationMethodPicker;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class CreateContainersTable extends Migration
 {
@@ -26,9 +27,9 @@ class CreateContainersTable extends Migration
             $table->string('owner_id')->nullable();
 
             MigrationMethodPicker::pick($table, config('asseco-containers.migrations.timestamps'));
-
-            $this->seedData();
         });
+
+        $this->seedData();
     }
 
     /**
@@ -48,6 +49,12 @@ class CreateContainersTable extends Migration
             'created_at' => now(),
             'updated_at' => now(),
         ];
+
+        if (config('asseco-containers.migrations.uuid')) {
+            $data = array_merge($data, [
+                'id' => Str::uuid(),
+            ]);
+        }
 
         DB::table('containers')->insert($data);
     }
