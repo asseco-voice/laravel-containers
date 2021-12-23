@@ -23,15 +23,15 @@ class ContainerControllerTest extends TestCase
     {
         $this
             ->getJson(route('containers.index'))
-            ->assertJsonCount(0);
+            ->assertJsonCount(1);
 
         $this->container::factory()->count(5)->create();
 
         $this
             ->getJson(route('containers.index'))
-            ->assertJsonCount(5);
+            ->assertJsonCount(6);
 
-        $this->assertCount(5, $this->container::all());
+        $this->assertCount(6, $this->container::all());
     }
 
     /** @test */
@@ -47,7 +47,7 @@ class ContainerControllerTest extends TestCase
                 'name' => $request['name'],
             ]);
 
-        $this->assertCount(1, $this->container::all());
+        $this->assertCount(2, $this->container::all());
     }
 
     /** @test */
@@ -85,12 +85,12 @@ class ContainerControllerTest extends TestCase
     {
         $Container = $this->container::factory()->create();
 
-        $this->assertCount(1, $this->container::all());
+        $this->assertCount(2, $this->container::all());
 
         $this
             ->deleteJson(route('containers.destroy', $Container->id))
             ->assertOk();
 
-        $this->assertCount(0, $this->container::all());
+        $this->assertCount(1, $this->container::all());
     }
 }
