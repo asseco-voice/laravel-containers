@@ -33,4 +33,8 @@ return [
         'run'        => true,
     ],
 
+    'routes' => [
+        'prefix'     => 'api',
+        'middleware' => ['api'],
+    ],
 ];
