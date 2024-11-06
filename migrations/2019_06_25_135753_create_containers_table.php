@@ -45,7 +45,7 @@ class CreateContainersTable extends Migration
     protected function seedData(): void
     {
         $data = [
-            'name'       => 'Default',
+            'name' => 'Default',
             'created_at' => now(),
             'updated_at' => now(),
         ];
