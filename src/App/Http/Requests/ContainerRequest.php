@@ -27,7 +27,7 @@ class ContainerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'     => 'required|string|unique:containers,name' . ($this->route('container') ? ',' . $this->route('container')->id : null),
+            'name' => 'required|string|unique:containers,name' . ($this->route('container') ? ',' . $this->route('container')->id : null),
             'owner_id' => 'nullable',
         ];
     }

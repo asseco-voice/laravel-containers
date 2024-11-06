@@ -22,15 +22,15 @@ class ContainerFactory extends Factory
     public function definition()
     {
         $data = [
-            'name'       => $this->faker->unique()->word,
-            'owner_id'   => $this->faker->randomNumber(),
+            'name' => $this->faker->unique()->word,
+            'owner_id' => $this->faker->randomNumber(),
             'created_at' => now(),
             'updated_at' => now(),
         ];
 
         if (config('asseco-containers.migrations.uuid')) {
             $data = array_merge($data, [
-                'owner_id'   => Str::uuid(),
+                'owner_id' => Str::uuid(),
             ]);
         }
 
